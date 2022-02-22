@@ -47,7 +47,7 @@
         android:id="@+id/feels_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Feels like 78"
+        android:text="Feels like 78°"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/temprature"
         app:layout_constraintStart_toStartOf="@id/temprature"

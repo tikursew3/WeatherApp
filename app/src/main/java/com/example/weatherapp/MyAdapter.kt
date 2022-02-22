@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.time.Instant
@@ -13,21 +12,21 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 //extend the RecyclerView.Adapter class
-class MyAdapter(private val data: List<Data>):RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MyAdapter(private val data: List<DayForecast>):RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
     //extend the RecyclerView.ViewHolder class
      class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val dateView: TextView = view.findViewById(R.id.date)
-         private val sunriseView: TextView = view.findViewById(R.id.sunrise)
-         private val sunsetView: TextView = view.findViewById(R.id.sunset)
+        private val dateView: TextView = view.findViewById(R.id.date1)
+        private val tempView: TextView = view.findViewById(R.id.temp1)
+        private val tempViewHigh: TextView = view.findViewById(R.id.high1)
+        private val tempViewLow: TextView = view.findViewById(R.id.low1)
+        private val sunriseView: TextView = view.findViewById(R.id.sunrise1)
+        private val sunsetView: TextView = view.findViewById(R.id.sunset1)
 
 
-         private val tempViewHigh: TextView = view.findViewById(R.id.high)
-         private val tempViewLow: TextView = view.findViewById(R.id.low)
-        private val tempView: TextView = view.findViewById(R.id.temp)
 
         @SuppressLint("NewApi")
-        fun bind(data: Data) {
+        fun bind(data: DayForecast) {
 
             val instant = Instant.ofEpochSecond(data.date)
             val dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
@@ -35,24 +34,24 @@ class MyAdapter(private val data: List<Data>):RecyclerView.Adapter<MyAdapter.Vie
             dateView.text = formatter.format(dateTime)
 
 
-            tempView.text = "Temp " + data.temp.day.toFloat().toString()
+            tempView.text = "Temp: " + data.temp.day.toInt() + "°"
 
-            tempViewHigh.text = "High " + data.temp.max.toInt().toString()
+            tempViewHigh.text = "High: " + data.temp.max.toInt() + "°"
 
-            tempViewLow.text = "Low " +  data.temp.min.toInt().toString()
+            tempViewLow.text = "Low: " +  data.temp.min.toInt() + "°"
 
 
             val sunriseInstant = Instant.ofEpochSecond(data.sunrise)
             val sunriseTime = LocalDateTime.ofInstant(sunriseInstant, ZoneId.systemDefault())
-            val sunriseFormatter = DateTimeFormatter.ofPattern("HH MM a")
+            val sunriseFormatter = DateTimeFormatter.ofPattern("hh mm a")
 
-            sunriseView.text = "sunrise "+ sunriseFormatter.format(sunriseTime)
+            sunriseView.text = "sunrise: " + sunriseFormatter.format(sunriseTime)
 
             val sunsetInstant = Instant.ofEpochSecond(data.sunset)
             val sunsetTime = LocalDateTime.ofInstant(sunsetInstant, ZoneId.systemDefault())
-            val sunsetFormatter = DateTimeFormatter.ofPattern("HH MM a")
+            val sunsetFormatter = DateTimeFormatter.ofPattern("hh mm a")
 
-            sunsetView.text = "sunset "+ sunsetFormatter.format(sunsetTime)
+            sunsetView.text = "sunset: " + sunsetFormatter.format(sunsetTime)
 
 
 
