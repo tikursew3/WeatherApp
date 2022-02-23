@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -22,6 +24,7 @@ class MyAdapter(private val data: List<DayForecast>):RecyclerView.Adapter<MyAdap
         private val tempViewLow: TextView = view.findViewById(R.id.low1)
         private val sunriseView: TextView = view.findViewById(R.id.sunrise1)
         private val sunsetView: TextView = view.findViewById(R.id.sunset1)
+        private val conditionIcon1: ImageView = view.findViewById(R.id.condition_icon)
 
 
 
@@ -54,8 +57,12 @@ class MyAdapter(private val data: List<DayForecast>):RecyclerView.Adapter<MyAdap
             sunsetView.text = "sunset: " + sunsetFormatter.format(sunsetTime)
 
 
+            val iconName = data.weather.firstOrNull()?.icon
+            val iconUrl = "https://openweathermap.org/img/wn/${iconName}@2x.png"
 
-
+            Glide.with(conditionIcon1)
+                .load(iconUrl)
+                .into(conditionIcon1)
 
 
 
