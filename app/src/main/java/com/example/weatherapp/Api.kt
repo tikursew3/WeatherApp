@@ -7,15 +7,16 @@ import retrofit2.http.Query
 
 interface Api {
     @GET("weather")
-    fun getCurrentConditions(
+    suspend fun getCurrentConditions(
         @Query("zip") zip: String,
         @Query("units") units: String = "imperial",
         @Query("appid") appId: String = "f46c384220f36eba4185c54a1c0b95b4",
-    ): Call<CurrentConditions>
+    ): CurrentConditions
     @GET("forecast/daily")
-    fun getForecast(
+    suspend fun getForecast(
         @Query("zip") zip: String,
         @Query("units") units: String = "imperial",
         @Query("appid") appId: String = "f46c384220f36eba4185c54a1c0b95b4",
-    ): Call<Forecast>
+        @Query("cnt" ) count: String = "16"
+    ): Forecast
 }
