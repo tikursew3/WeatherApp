@@ -24,7 +24,7 @@ class MyAdapter(private val data: List<DayForecast>):RecyclerView.Adapter<MyAdap
         private val tempViewLow: TextView = view.findViewById(R.id.low1)
         private val sunriseView: TextView = view.findViewById(R.id.sunrise1)
         private val sunsetView: TextView = view.findViewById(R.id.sunset1)
-        private val conditionIcon1: ImageView = view.findViewById(R.id.condition_icon)
+        private val conditionIcon1: ImageView = view.findViewById(R.id.condition_icon1)
 
 
 
@@ -60,7 +60,7 @@ class MyAdapter(private val data: List<DayForecast>):RecyclerView.Adapter<MyAdap
             val iconName = data.weather.firstOrNull()?.icon
             val iconUrl = "https://openweathermap.org/img/wn/${iconName}@2x.png"
 
-            Glide.with(conditionIcon1)
+            Glide.with(itemView.context)
                 .load(iconUrl)
                 .into(conditionIcon1)
 
