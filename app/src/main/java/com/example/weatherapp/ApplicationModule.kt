@@ -22,6 +22,5 @@ object ApplicationModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
         return retrofit.create(Api::class.java)
-
     }
 }

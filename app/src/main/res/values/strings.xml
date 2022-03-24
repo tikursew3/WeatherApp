@@ -7,14 +7,8 @@
     <string name="high">High %1$d°</string>
     <string name="humidity">Humidity %1$d%%</string>
     <string name="pressure">Pressure %1$d hPa</string>
-
-    <string name="forecast">Forecast</string>
-    <string name="date">%1$s</string>
-    <string name="temp1">%1$d°</string>
-    <string name="low1">%1$d°</string>
-    <string name="high1">%1$d°</string>
-    <string name="sunrise1">sunrise: %1$dam</string>
-    <string name="sunset1">sunset: %1$dpm</string>
+    <string name="Zip_code">Zip Code</string>
+    <string name="submit">Submit</string>
 
 
 </resources>
