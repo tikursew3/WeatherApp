@@ -4,12 +4,18 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.example.weatherapp.databinding.ActivityMainBinding
+
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,9 +32,6 @@ class MainActivity : AppCompatActivity() {
 
     private val apikey = "f46c384220f36eba4185c54a1c0b95b4"
     private lateinit var binding: ActivityMainBinding
-    @Inject lateinit var viewModel:  MainViewModel
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,45 +41,25 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        val fm: FragmentManager = supportFragmentManager
+        val ft: FragmentTransaction = fm.beginTransaction()
+        val fragment = CurrentConditionsFragment()
+        ft.add(R.id.fragment_container_view, fragment, "CurrentConditionFragment" )
+        ft.commit()
 
-        val actionButton = findViewById<Button>(R.id.button)
-        actionButton.setOnClickListener {
-            val intent = Intent(this, ForecastActivity::class.java)
-            startActivity(intent)
-        }
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+
+
+
 
     }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.currentConditions.observe(this) {currentConditions ->
-            bindData(currentConditions)
-        }
-
-        viewModel.loadData()
-
-    }
-    @SuppressLint("StringFormatInvalid")
-    private fun bindData(currentConditions: CurrentConditions) {
-        binding.cityName.text = currentConditions.name.toString()
-        binding.temprature.text = getString(R.string.temperature, currentConditions.main.temp.toInt())
-
-        binding.feelsLike.text = getString(R.string.feels_like,currentConditions.main.feelsLike.toInt())
-        binding.low.text = getString(R.string.low, currentConditions.main.tempMin.toInt())
-        binding.high.text = getString(R.string.high, currentConditions.main.tempMax.toInt())
-        binding.humidity.text = getString(R.string.humidity, currentConditions.main.humidity.toInt())
-
-
-
-        binding.pressure.text = getString(R.string.pressure, currentConditions.main.pressure.toInt())
-        val iconName = currentConditions.weather.firstOrNull()?.icon
-        val iconUrl = "https://openweathermap.org/img/wn/${iconName}@2x.png"
-        Glide.with(this)
-            .load(iconUrl)
-            .into(binding.conditionIcon)
-
-
-
+     fun onClick(view: View) {
+        val action = CurrentConditionsFragmentDirections.actionCurrentConditionsFragmentToForecastFragment()
+        view.findNavController().navigate(action)
     }
 
 }

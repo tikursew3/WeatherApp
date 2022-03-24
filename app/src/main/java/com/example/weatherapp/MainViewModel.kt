@@ -19,10 +19,7 @@ class MainViewModel @Inject constructor(private val service: Api): ViewModel() {
     val currentConditions: LiveData<CurrentConditions>
         get() = _currentConditions
 
-
-
     fun loadData() = runBlocking{
-        launch {_currentConditions.value = service.getCurrentConditions("55423")}
-
+        launch {_currentConditions.value = service.getCurrentConditions("73071")}
     }
 }
