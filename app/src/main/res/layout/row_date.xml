@@ -4,18 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:paddingHorizontal="12dp"
-    tools:context=".ForecastActivity">
+
+    >
 
 
     <ImageView
-        android:id="@+id/condition_icon1"
+        android:id="@+id/condition_icon"
         android:layout_width="56dp"
         android:layout_height="41dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:scaleType="fitCenter"
-
+        android:text="@string/conditionIcon"
         android:src="@drawable/sun"
 
 
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/date1"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -31,61 +31,62 @@
 
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/temp1"
+        app:layout_constraintEnd_toStartOf="@+id/temp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.513"
         tools:text="Jan 30" />
 
     <TextView
-        android:id="@+id/temp1"
+        android:id="@+id/temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
 
-
+        android:text="@string/temp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sunrise1"
+        app:layout_constraintEnd_toStartOf="@+id/sunrise"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.108"
         tools:text="Temp: 72" />
 
     <TextView
-        android:id="@+id/high1"
+        android:id="@+id/high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-
+        android:text="@string/high"
         android:layout_marginEnd="16dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/low1"
+        app:layout_constraintEnd_toStartOf="@+id/low"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.918"
         tools:text="high: 72" />
 
     <TextView
-        android:id="@+id/low1"
+        android:id="@+id/low"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textColor="@color/black"
 
-
+        android:text="@string/low"
         app:layout_constraintBottom_toBottomOf="parent"
 
 
-        app:layout_constraintEnd_toStartOf="@+id/sunset1"
+        app:layout_constraintEnd_toStartOf="@+id/sunset"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.918"
         tools:text="Low: 65" />
 
     <TextView
-        android:id="@+id/sunrise1"
+        android:id="@+id/sunrise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:textColor="@color/black"
+        android:text="@string/sunrise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -93,11 +94,11 @@
         tools:text="sunrise 8:00am" />
 
     <TextView
-        android:id="@+id/sunset1"
+        android:id="@+id/sunset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-
+        android:text="@string/sunset"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

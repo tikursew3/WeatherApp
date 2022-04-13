@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 
+import com.example.weatherapp.model.CurrentConditions
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,7 +14,8 @@ interface Api {
     ): CurrentConditions
     @GET("forecast/daily")
     suspend fun getForecast(
-        @Query("zip") zip: String,
+        @Query("lat") latitude: String,
+        @Query("lon") longitude: String,
         @Query("units") units: String = "imperial",
         @Query("appid") appId: String = "f46c384220f36eba4185c54a1c0b95b4",
         @Query("cnt" ) count: String = "16"
