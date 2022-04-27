@@ -11,7 +11,6 @@
     <string name="forecast">Forecast</string>
 
 
-
     <string name="current_conditions">Current Conditions</string>
     <string name="zip_code">Zip Code</string>
     <string name="search">Search</string>
@@ -22,6 +21,9 @@
     <string name="sunrise">Sunrise: %1$s</string>
     <string name="sunset">Sunset: %1$s</string>
     <string name="request">RequestButton</string>
+
+    <string name="channelName">Reminders</string>
+    <string name="channelDescription">Reminders you\'ve added</string>
 
 
 </resources>

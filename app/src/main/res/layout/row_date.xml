@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/condition_icon"
+        android:id="@+id/condition_icon1"
         android:layout_width="56dp"
         android:layout_height="41dp"
         android:layout_marginStart="4dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/date1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -31,13 +31,13 @@
 
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/temp"
+        app:layout_constraintEnd_toStartOf="@+id/temp1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.513"
         tools:text="Jan 30" />
 
     <TextView
-        android:id="@+id/temp"
+        android:id="@+id/temp1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
@@ -45,13 +45,13 @@
         android:text="@string/temp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sunrise"
+        app:layout_constraintEnd_toStartOf="@+id/sunrise1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.108"
         tools:text="Temp: 72" />
 
     <TextView
-        android:id="@+id/high"
+        android:id="@+id/high1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -59,13 +59,13 @@
         android:layout_marginEnd="16dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/low"
+        app:layout_constraintEnd_toStartOf="@+id/low1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.918"
         tools:text="high: 72" />
 
     <TextView
-        android:id="@+id/low"
+        android:id="@+id/low1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -75,13 +75,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
 
-        app:layout_constraintEnd_toStartOf="@+id/sunset"
+        app:layout_constraintEnd_toStartOf="@+id/sunset1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.918"
         tools:text="Low: 65" />
 
     <TextView
-        android:id="@+id/sunrise"
+        android:id="@+id/sunrise1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
@@ -94,7 +94,7 @@
         tools:text="sunrise 8:00am" />
 
     <TextView
-        android:id="@+id/sunset"
+        android:id="@+id/sunset1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"

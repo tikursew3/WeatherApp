@@ -19,22 +19,11 @@ object ApplicationModule {
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
-
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = if (BuildConfig.DEBUG) {
-            HttpLoggingInterceptor.Level.BODY
-        } else {
-            HttpLoggingInterceptor.Level.NONE
-        }
-        val client = OkHttpClient
-            .Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
         val retrofit = Retrofit.Builder()
-            .client(client)
-            .baseUrl("https://api.openweathermap.org/data/2.5/")
+            .baseUrl("https://pro.openweathermap.org/data/2.5/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
         return retrofit.create(Api::class.java)
+
     }
 }

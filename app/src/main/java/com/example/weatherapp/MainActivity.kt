@@ -8,100 +8,92 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+
 import android.widget.Button
 
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
+
 import com.bumptech.glide.Glide
 import com.example.weatherapp.databinding.ActivityMainBinding
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsResultCallback {
+class MainActivity : AppCompatActivity() {
 
     private val apikey = "f46c384220f36eba4185c54a1c0b95b4"
     private lateinit var binding: ActivityMainBinding
-    lateinit var button: Button
+    @Inject lateinit var viewModel: MainViewModel
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        /*
-        button = findViewById(R.id.request_button)
-        button.setOnClickListener {
-            showCameraPreview()
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+
+        val actionButton = findViewById<Button>(R.id.button)
+        actionButton.setOnClickListener {
+            val intent = Intent(this, ForecastActivity::class.java)
+            startActivity(intent)
         }
 
 
-         */
-
 
     }
-    /*
-    private fun requestCameraPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA )) {
-                showCameraPermissionRationale()
-            } else {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    REQUEST_CAMERA_PERMISSION
-                )
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.currentConditions.observe(this) {currentConditions ->
+            bindData(currentConditions)
         }
+
+        viewModel.loadData()
+
     }
+    @SuppressLint("StringFormatInvalid")
+    private fun bindData(currentConditions: CurrentConditions) {
+        binding.cityName.text = currentConditions.cityName.toString()
+        binding.temprature.text = getString(R.string.temperature, currentConditions.main.temperature.toInt())
 
-    private fun showCameraPermissionRationale() {
-        AlertDialog.Builder(this)
-            .setMessage(R.string.camera_permission_rationale)
-            .setNeutralButton(R.string.okay) { _, _ ->
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    REQUEST_CAMERA_PERMISSION
-                )
+        binding.feelsLike.text = getString(R.string.feels_like,currentConditions.main.feelsLike.toInt())
+        binding.low.text = getString(R.string.low, currentConditions.main.tempMin.toInt())
+        binding.high.text = getString(R.string.high, currentConditions.main.tempMax.toInt())
+        binding.humidity.text = getString(R.string.humidity, currentConditions.main.humidity.toInt())
 
-            }
-            .create()
-            .show()
+
+
+        binding.pressure.text = getString(R.string.pressure, currentConditions.main.pressure.toInt())
+        val iconName = currentConditions.weather.firstOrNull()?.icon
+        val iconUrl = "https://openweathermap.org/img/wn/${iconName}@2x.png"
+        Glide.with(this)
+            .load(iconUrl)
+            .into(binding.conditionIcon)
+
+
+
     }
-    override fun onARequestPermissionsResult(
-        requestCode: int,
-        permissions: Array<out  String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == REQUEST_CAMERA_PERMISSION) {
-            if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startCamera()
-            }
+    fun scheduleAlert(view: View) {
+        val temperature = binding.temprature.text.toString()
+        val location = binding.cityName.text.toString()
+        val icon = binding.conditionIcon
 
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
+       // val notifier = Notifier(this)
+       // notifier.sendNotification(temperature, location, icon)
+        val intent = Intent(this, NotificationService::class.java)
+
+        intent.putExtra("Temperature",temperature)
+        intent.putExtra("Location", location)
+
+       startService(intent)
+
     }
-
-     */
-
-    override fun onBackPressed() {
-        findNavController(R.id.navigation_host).popBackStack()
-    }
-
 
 }
