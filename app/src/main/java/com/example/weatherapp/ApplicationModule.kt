@@ -6,8 +6,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import okhttp3.logging.HttpLoggingInterceptor
 
 @Module
 @InstallIn(ActivityComponent::class)
@@ -22,5 +24,6 @@ object ApplicationModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
         return retrofit.create(Api::class.java)
+
     }
 }

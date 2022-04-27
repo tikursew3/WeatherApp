@@ -13,11 +13,10 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-//extend the RecyclerView.Adapter class
-class MyAdapter(private val data: List<DayForecast>):RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MyAdapter(private val data: List<DayForecast>): RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
     //extend the RecyclerView.ViewHolder class
-     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val dateView: TextView = view.findViewById(R.id.date1)
         private val tempView: TextView = view.findViewById(R.id.temp1)
         private val tempViewHigh: TextView = view.findViewById(R.id.high1)

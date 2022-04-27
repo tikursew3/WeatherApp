@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:paddingHorizontal="12dp"
-    tools:context=".ForecastActivity">
+
+    >
 
 
     <ImageView
@@ -15,7 +15,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:scaleType="fitCenter"
-
+        android:text="@string/conditionIcon"
         android:src="@drawable/sun"
 
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
 
-
+        android:text="@string/temp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sunrise1"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-
+        android:text="@string/high"
         android:layout_marginEnd="16dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,7 @@
         android:layout_marginEnd="16dp"
         android:textColor="@color/black"
 
-
+        android:text="@string/low"
         app:layout_constraintBottom_toBottomOf="parent"
 
 
@@ -86,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:textColor="@color/black"
+        android:text="@string/sunrise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -97,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-
+        android:text="@string/sunset"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
